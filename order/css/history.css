@@ -1,0 +1,44 @@
+/* Past orders, and the manual category-complete button.
+   Colours, spacing, buttons and the top bar come from shared/ (generated from design/; edit them there). */
+
+/* ============ Past orders ============ */
+.history {
+  margin-bottom: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+.history > summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: 0 var(--space-4);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.history > summary::-webkit-details-marker { display: none; }
+.history > summary::after { content: "\25BE"; margin-left: auto; color: var(--muted-foreground); transition: transform 0.2s ease-out; }
+.history[open] > summary::after { transform: rotate(180deg); }
+.history .meta { font-weight: 400; color: var(--muted-foreground); }
+.history-list { border-top: 1px solid var(--border); }
+.history-entry { padding: var(--space-3) var(--space-4); }
+.history-entry + .history-entry { border-top: 1px solid var(--border); }
+.history-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-1) var(--space-3); font-size: 14px; }
+.history-date { font-weight: 600; }
+.history-sum { color: var(--muted-foreground); }
+.history-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); margin-top: var(--space-2); }
+.history-use { min-height: 44px; padding: var(--space-2) var(--space-4); font-size: 14px; }
+.history-use.armed { background: var(--accent-tint); border-color: var(--accent); color: var(--accent-ink); }
+.history-lines { margin: var(--space-3) 0 0; padding: 0; list-style: none; font-size: 13px; }
+.history-lines li { display: flex; justify-content: space-between; gap: var(--space-3); padding: var(--space-1) 0; }
+.history-lines li span:last-child { flex-shrink: 0; color: var(--muted-foreground); }
+.history-view { margin: 0; color: var(--accent-ink); }
+.combo-box .combo-line { display: block; }
+.combo-box .combo-extra { color: var(--warning-ink); }
+
+/* Manual "category complete" button at the end of each category */
+.cat-complete-btn { display: block; width: calc(100% - 36px); margin: var(--space-4) var(--space-4) var(--space-4); }
+.cat-complete-btn.is-done { background: transparent; color: var(--success); border-color: var(--success); box-shadow: none; }

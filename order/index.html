@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mojo's + Kaif ordering</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem("mojos_theme");
+    if (t !== "light" && t !== "dark") {
+      t = "dark"; // dark is the default; a saved choice from the toggle still wins
+    }
+    document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/shared/tokens.css">
+<link rel="stylesheet" href="css/shared/base.css">
+<link rel="stylesheet" href="css/pickers.css">
+<link rel="stylesheet" href="css/order-screen.css">
+<link rel="stylesheet" href="css/bottom-bar.css">
+<link rel="stylesheet" href="css/review.css">
+<link rel="stylesheet" href="css/confirm.css">
+<link rel="stylesheet" href="css/notices.css">
+<link rel="stylesheet" href="css/history.css">
+<link rel="stylesheet" href="css/shared-data.css">
+<link rel="stylesheet" href="css/order-history.css">
+<link rel="stylesheet" href="css/side-nav.css">
+</head>
+<body>
+<a class="skip-link" href="#mainContent">Skip to the page</a>
+<!-- The sidebar (tablet and wider; on a phone the top bars of each screen do this job) -->
+<aside class="side-nav" aria-label="Ordering">
+  <div class="side-brand"><span class="side-logo" aria-hidden="true">OR</span><strong>Ordering</strong><small>Beta</small></div>
+  <nav class="side-links" aria-label="Sections">
+    <button type="button" id="sideStores" data-side="branchScreen">Stores</button>
+    <button type="button" id="sideSuppliers" data-side="supplierScreen">Suppliers</button>
+    <button type="button" id="sideOrder" data-side="orderScreen">Current order</button>
+    <button type="button" id="sideHistory" data-side="historyScreen">Order history</button>
+  </nav>
+  <p class="side-where" id="sideWhere" hidden></p>
+  <div class="side-foot">
+    <a class="back-link" id="sideHome" href="../" hidden>&#8592; All tools</a>
+    <button class="icon-btn js-theme" id="sideTheme" type="button" title="Switch theme" aria-label="Switch theme"></button>
+  </div>
+</aside>
+<main id="mainContent" tabindex="-1">
+
+<dialog id="accessDialog" class="sheet-dialog" aria-labelledby="accessTitle">
+  <form method="dialog">
+    <h3 id="accessTitle">Staff access code</h3>
+    <p>Enter the code once on this phone to share what you order with the other stores. Ask the owner if you do not have it.</p>
+    <label for="accessInput">Access code</label>
+    <input id="accessInput" type="password" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <div class="sheet-dialog-actions">
+      <button type="submit" class="btn" value="ok">Save</button>
+      <button type="submit" class="btn secondary" value="cancel" formnovalidate>Not now</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Store select -->
+<section id="branchScreen" class="screen">
+  <header class="topbar">
+    <a class="back-link" id="backToLauncher" href="../" hidden>&#8592; All tools</a>
+    <h2 class="topbar-title">Choose your store</h2>
+    <button class="icon-btn js-theme" id="themeToggle" type="button" title="Switch theme" aria-label="Switch theme"></button>
+  </header>
+  <div class="branch-grid" id="branchGrid"></div>
+  <div class="history-open"><button type="button" class="btn secondary" id="openHistory">Order history</button></div>
+</section>
+
+<!-- Order history: every order that was sent, with PDF and Excel downloads that include the prices -->
+<section id="historyScreen" class="screen">
+  <header class="topbar">
+    <button class="back-link" id="backFromHistory">&#8592; Stores</button>
+    <h2 class="topbar-title">Order history</h2>
+  </header>
+  <div class="oh-body">
+    <div class="oh-filters">
+      <div><label for="ohStore">Store</label><select id="ohStore"></select></div>
+      <div><label for="ohSupplier">Supplier</label><select id="ohSupplier"></select></div>
+      <div><label for="ohPeriod">Period</label>
+        <select id="ohPeriod"><option value="30">Last 30 days</option><option value="90" selected>Last 90 days</option><option value="365">Last 12 months</option><option value="0">Everything</option></select></div>
+    </div>
+    <div class="oh-actions">
+      <button type="button" class="btn secondary" id="ohAllExcel">Download all: Excel</button>
+      <button type="button" class="btn secondary" id="ohAllPdf">Download all: PDF</button>
+    </div>
+    <p class="oh-note" id="ohNote" role="status" aria-live="polite"></p>
+    <div id="ohList"></div>
+  </div>
+</section>
+
+<!-- Supplier select -->
+<section id="supplierScreen" class="screen">
+  <header class="topbar">
+    <button class="back-link" id="backToBranch">&#8592; Change store</button>
+    <div>
+      <h2 class="topbar-title">Select a supplier</h2>
+      <span class="branch-tag" id="supplierBranchTag"></span>
+    </div>
+  </header>
+  <div class="branch-grid" id="supplierGrid"></div>
+</section>
+
+<!-- Order form -->
+<section id="orderScreen" class="screen">
+  <div class="sticky-head">
+  <header class="topbar">
+    <div>
+      <span class="topbar-title" id="supplierTitle">Order</span>
+      <span class="branch-tag" id="branchTag"></span>
+    </div>
+    <button class="icon-btn danger" id="clearAllBtn" title="Clear all" aria-label="Clear all"><svg class="icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg><span class="icon-label">Clear</span></button>
+    <button class="icon-btn" id="switchStore" title="Change store" aria-label="Change store"><svg class="icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-5h4v5"/></svg><span class="icon-label">Store</span></button>
+    <button class="icon-btn" id="switchBranch" title="Change supplier" aria-label="Change supplier"><svg class="icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg><span class="icon-label">Supplier</span></button>
+  </header>
+  <div class="storage-notice hidden" id="storageNotice" role="alert">
+    This device can't save your changes (storage is full or blocked). Keep this page open and send the order before closing it.
+  </div>
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Search items..." aria-label="Search items">
+    <label class="filter-toggle">
+      <input type="checkbox" id="onlyTouchedToggle">
+      Show only items with a quantity
+    </label>
+  </div>
+  </div>
+  <p class="how-to" id="howTo">Par is your target stock. To Order fills in as par minus stock; adjust it with &minus; and +. <button class="btn-link" type="button" id="howToDismiss">Got it</button></p>
+  <div class="content" id="orderContent"></div>
+  <div class="no-results hidden" id="noResults">
+    <p>No items match.</p>
+    <button class="btn secondary" type="button" id="clearSearchBtn">Clear search</button>
+  </div>
+  <div class="incomplete-warning hidden" id="incompleteWarning" role="status">
+    <span class="warn-icon" aria-hidden="true">&#9888;</span>
+    <span id="incompleteText"></span>
+    <button type="button" class="warn-toggle hidden" id="warnToggle" aria-expanded="false"></button>
+  </div>
+  <div class="bottombar">
+    <div class="count"><strong id="selectedCount">0</strong> items selected<span class="total" id="estTotal">฿0</span></div>
+    <button class="btn" id="reviewBtn" disabled>Review order</button>
+  </div>
+</section>
+
+<!-- Review -->
+<section id="reviewScreen" class="screen">
+  <header class="topbar">
+    <button class="back-link" id="backToOrder">&#8592; Edit</button>
+    <h2 class="topbar-title">Review order</h2>
+  </header>
+  <div class="review-list" id="reviewList"></div>
+  <div class="bottombar stacked">
+    <div class="action-row">
+      <button class="btn file-btn" id="excelReviewBtn">&#128202; Share Excel</button>
+      <button class="btn file-btn" id="pdfReviewBtn">&#128196; Share PDF</button>
+    </div>
+    <div class="action-row">
+      <button class="btn secondary" id="emailOrderBtn">&#9993; Email order</button>
+      <button class="btn secondary" id="copyReviewBtn">&#128203; Copy order</button>
+    </div>
+  </div>
+</section>
+
+<!-- Confirmation -->
+<section id="confirmScreen" class="screen">
+  <div class="confirm-screen">
+    <div class="confirm-icon" aria-hidden="true"><svg viewBox="0 0 52 52" width="40" height="40" fill="none"><path class="tick" d="M14 27l9 9 17-19" pathLength="1"/></svg></div>
+    <h2 id="confirmHeading">Order sent</h2>
+    <p id="confirmBody">Your mail app has opened with the order. Tap Send there. If you did not send it, restore your order below.</p>
+    <button class="btn" id="nextSupplierBtn">Order from another supplier</button>
+    <button class="btn secondary" id="newOrderBtn">Done</button>
+    <details class="send-again">
+      <summary>Send again</summary>
+      <button class="btn secondary file-btn" id="excelConfirmBtn">&#128202; Share Excel</button>
+      <button class="btn secondary file-btn" id="pdfConfirmBtn">&#128196; Share PDF</button>
+      <button class="btn secondary" id="emailConfirmBtn">&#9993; Email order</button>
+      <button class="btn secondary copy-btn" id="copyOrderBtn">&#128203; Copy order</button>
+    </details>
+    <button class="btn-link hidden" type="button" id="restoreOrderBtn">Didn't send it? Restore my order</button>
+  </div>
+</section>
+
+</main>
+
+<div class="global-toast hidden" id="globalToast" role="status" aria-live="polite"></div>
+
+<script src="js/vendor/xlsx.full.min.js"></script>
+<script src="js/vendor/jspdf.umd.min.js"></script>
+<script src="config/config.js"></script>
+<script src="config/data.js"></script>
+<script src="js/ordering/01-state-storage.js"></script>
+<script src="js/ordering/dormant.js"></script>
+<script src="js/ordering/shared-data.js"></script>
+<script src="js/ordering/02-totals.js"></script>
+<script src="js/ordering/03-order-screens.js"></script>
+<script src="js/ordering/04-review-export.js"></script>
+<script src="js/ordering/05-history.js"></script>
+<script src="js/ordering/05b-order-history.js"></script>
+<script src="js/ordering/06-actions-init.js"></script>
+<script src="js/shell/a11y.js"></script>
+<script src="js/shell/scroll-search.js"></script>
+<script src="js/shell/offline.js"></script>
+</body>
+</html>

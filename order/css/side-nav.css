@@ -1,0 +1,43 @@
+/* The sidebar (tablet and wider). On a phone it is hidden and each screen's own top bar does the job.
+   Colours, spacing and buttons come from shared/ (generated from design/). */
+.side-nav { display: none; }
+@media (min-width: 721px) {
+  :root { --side-w: 232px; }
+  body { padding-left: var(--side-w); }
+  .side-nav {
+    position: fixed; top: 0; bottom: 0; left: 0; z-index: var(--z-bar); width: var(--side-w);
+    display: flex; flex-direction: column; gap: var(--space-5); overflow-y: auto;
+    padding: var(--space-5) var(--space-3);
+    background: var(--card); color: var(--foreground); border-right: 1px solid var(--border);
+  }
+  .side-brand { display: flex; align-items: center; gap: var(--space-2); padding: 0 var(--space-2); }
+  .side-brand strong { font-size: 16px; font-weight: 600; }
+  .side-brand small { margin-left: auto; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-foreground); }
+  .side-logo { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px; background: var(--gradient); color: var(--accent-foreground); font-family: var(--font-mono); font-size: 12px; font-weight: 700; }
+  .side-links { display: grid; gap: var(--space-1); }
+  .side-links button {
+    display: flex; align-items: center; min-height: 44px; padding: 0 var(--space-3); border: 0; border-radius: var(--radius);
+    background: transparent; color: var(--muted-foreground); font: inherit; font-size: 15px; font-weight: 500; text-align: left;
+  }
+  .side-links button[aria-current="page"] { background: var(--accent-tint); color: var(--accent-ink); box-shadow: inset 0 0 0 1px var(--accent-line); }
+  .side-links button[aria-disabled="true"] { opacity: 0.4; cursor: not-allowed; }
+  @media (hover: hover) { .side-links button:not([aria-disabled="true"]):not([aria-current]):hover { background: var(--muted); color: var(--foreground); } }
+  .side-where { margin: 0; padding: 0 var(--space-2); font-size: 13px; color: var(--muted-foreground); }
+  .side-foot { margin-top: auto; display: grid; gap: var(--space-3); justify-items: start; }
+  .side-foot .back-link { width: 100%; justify-content: center; }
+  /* The "All tools" link and the theme button are built for the dark top bars (white text, faint white fill). The sidebar is the
+     card colour, which turns white in the light theme, so they take the normal text and border colours here instead. */
+  .side-foot { --inverse-fg: var(--foreground); --inverse-line: var(--border-strong); --inverse-fill: transparent; --inverse-fill-strong: var(--muted); }
+  @media (hover: hover) { .side-foot .back-link:hover, .side-foot .icon-btn:hover { background: var(--muted); } }
+  /* The fixed bars sit beside the sidebar, not under it */
+  .incomplete-warning, .bottombar { left: var(--side-w); }
+  /* What the sidebar now does, so the top bars drop it */
+  .topbar .back-link, .topbar .js-theme, #switchStore, #switchBranch { display: none; }
+  /* Page headers use the page colour (like the HR & Labour header) instead of a separate near-black bar */
+  .topbar { background: var(--background); color: var(--foreground); border-bottom-color: var(--border); }
+  .topbar .branch-tag { color: var(--muted-foreground); }
+}
+
+/* Skip link: the first thing a keyboard user can reach; it jumps past the sidebar */
+.skip-link { position: absolute; left: var(--space-3); top: -48px; z-index: calc(var(--z-bar) + 1); padding: var(--space-2) var(--space-4); border-radius: var(--radius); background: var(--card); color: var(--accent-ink); border: 2px solid var(--ring); text-decoration: none; }
+.skip-link:focus { top: var(--space-3); }

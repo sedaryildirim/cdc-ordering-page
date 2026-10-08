@@ -1,0 +1,115 @@
+/* The review screen.
+   Colours, spacing, buttons and the top bar come from shared/ (generated from design/; edit them there). */
+
+/* ============ Review ============ */
+.review-list { padding: var(--space-4) var(--gutter) var(--space-4); }
+.review-cat {
+  margin-bottom: var(--space-3);
+  padding: var(--space-4) var(--space-4) var(--space-2);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: var(--shadow-md);
+}
+.review-cat h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-1);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+.review-cat h3::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.review-item {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  line-height: 1.35;
+}
+.review-cat .review-item:last-child { border-bottom: none; }
+.review-item .qty {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--accent-ink);
+}
+.review-item .qty .price {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted-foreground);
+}
+.review-subtotal {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-1);
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  color: var(--muted-foreground);
+}
+.review-subtotal:first-of-type { margin-top: var(--space-4); }
+
+/* The total is the one inverted moment on this screen */
+.review-total {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+  padding: var(--space-5) var(--space-5);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: var(--inverse-bg);
+  background-image: radial-gradient(circle at 100% 0%, rgba(0, 82, 255, 0.45), transparent 55%);
+  color: var(--inverse-fg);
+  font-size: 14px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-xl);
+}
+.review-total > span:last-child {
+  font-family: var(--font-display);
+  font-size: 34px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  background: var(--gradient-on-dark);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.review-gate-warning {
+  margin-top: var(--space-4);
+  padding: var(--space-4) var(--space-4);
+  border-radius: var(--radius);
+  background: var(--warning-solid);
+  color: var(--on-warning);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+.review-empty {
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}

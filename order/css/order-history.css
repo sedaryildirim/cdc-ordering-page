@@ -1,0 +1,24 @@
+/* Order history screen. Colours, spacing and buttons come from shared/. */
+.history-open { padding: var(--space-4) var(--gutter) 0; }
+.oh-body { padding: var(--space-4) var(--gutter) var(--space-8); display: grid; gap: var(--space-3); }
+.oh-filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: var(--space-3); }
+.oh-filters label { display: block; margin-bottom: var(--space-1); font-size: 13px; color: var(--muted-foreground); }
+.oh-filters select { width: 100%; min-height: 44px; padding: var(--space-2) var(--space-3); border: 1px solid var(--border-strong); border-radius: var(--radius); background: var(--card); color: var(--foreground); font-size: 16px; }
+.oh-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.oh-actions .btn, .oh-buttons .btn { min-height: 44px; padding: var(--space-2) var(--space-4); }
+.oh-note { margin: 0; font-size: 13px; color: var(--muted-foreground); min-height: 1.3em; }
+.oh-note:empty { display: none; }
+.oh-sum { margin: 0; font-size: 14px; color: var(--muted-foreground); }
+.oh-empty { margin: 0; padding: var(--space-6) var(--space-3); text-align: center; color: var(--muted-foreground); border: 1px dashed var(--border-strong); border-radius: var(--radius); }
+.oh-order { display: grid; gap: var(--space-2); margin-top: var(--space-3); padding: var(--space-4); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--card); }
+.oh-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2); }
+.oh-head span, .oh-meta { font-size: 13px; color: var(--muted-foreground); }
+.oh-total { font-size: 14px; font-variant-numeric: tabular-nums; }
+.oh-buttons { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.oh-buttons .btn-link { margin-right: auto; min-height: 44px; }
+.oh-lines { width: 100%; border-collapse: collapse; font-size: 13px; }
+.oh-lines th, .oh-lines td { padding: var(--space-1) var(--space-2); border-bottom: 1px solid var(--border); text-align: left; }
+.oh-lines th { font-family: var(--font-mono); font-size: 11px; font-weight: 500; text-transform: uppercase; color: var(--muted-foreground); }
+.oh-lines td:nth-child(n+2), .oh-lines th:nth-child(n+2) { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.oh-lines.hidden { display: none; }
+@media (min-width: 721px) { .history-open { display: none; } }

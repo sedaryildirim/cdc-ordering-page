@@ -1,0 +1,240 @@
+/* GENERATED from design/base.css by scripts/sync-design.mjs. Do not edit this copy: change design/base.css and run npm run design:sync. */
+/* ============ Base ============ */
+
+/* Scrollbars follow the theme: blue thumb on a slate-tinted track */
+html, .incomplete-warning {
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+  scrollbar-width: thin;
+}
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar { width: 12px; height: 12px; }
+  ::-webkit-scrollbar-track { background: var(--scroll-track); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--scroll-thumb);
+    border: 3px solid var(--scroll-track);
+    border-radius: 999px;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, input { font-family: inherit; }
+button { cursor: pointer; }
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+[tabindex="-1"]:focus { outline: none; }
+
+/* Focus ring on inverted surfaces needs a lighter tone */
+.topbar :focus-visible,
+.hero :focus-visible,
+#confirmScreen :focus-visible { outline-color: var(--accent-on-dark); }
+
+/* ============ Screens (functional: app.js toggles these) ============ */
+.screen { display: none; min-height: 100vh; }
+.screen.active { display: block; }
+.hidden { display: none !important; }
+
+#orderScreen { padding-bottom: calc(88px + var(--safe-bottom)); }
+body.has-warning #orderScreen { padding-bottom: calc(150px + var(--safe-bottom)); }
+#reviewScreen { padding-bottom: calc(150px + var(--safe-bottom)); }
+
+/* ============ Motion ============ */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============ Buttons ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  background: var(--gradient-btn);
+  color: var(--accent-foreground);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, filter 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+.btn:active { transform: scale(0.98); }
+.btn.secondary {
+  background: transparent;
+  color: var(--foreground);
+  border-color: var(--border-strong);
+  box-shadow: none;
+}
+.btn:disabled,
+.btn.secondary:disabled {
+  background: var(--muted);
+  color: var(--muted-foreground);
+  border-color: var(--border);
+  box-shadow: none;
+  transform: none;
+  filter: none;
+  cursor: not-allowed;
+}
+.btn.block { width: 100%; }
+
+@media (hover: hover) {
+  .btn:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-accent-lg);
+    filter: brightness(1.08);
+  }
+  .btn.secondary:not(:disabled):hover {
+    background: var(--muted);
+    border-color: var(--accent-line);
+    box-shadow: var(--shadow-md);
+    filter: none;
+  }
+}
+
+.icon-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--inverse-line);
+  background: var(--inverse-fill);
+  color: var(--inverse-fg);
+  font-size: 18px;
+  transition: background-color 0.2s ease-out, border-color 0.2s ease-out, transform 0.2s ease-out;
+}
+.icon-btn:active { transform: scale(0.96); background: var(--inverse-fill-strong); }
+.icon-btn.danger { border-color: var(--danger-on-dark); color: var(--danger-on-dark); }
+.icon-btn.armed {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: var(--accent-foreground);
+}
+@media (hover: hover) {
+  .icon-btn:hover { background: rgba(255, 255, 255, 0.14); }
+}
+
+/* ============ Topbar (inverted slate) ============ */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--gutter);
+  background: var(--inverse-bg);
+  color: var(--inverse-fg);
+  border-bottom: 1px solid var(--inverse-line);
+}
+.topbar > div:first-child { flex: 1; min-width: 0; }
+.topbar-title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.topbar .branch-tag {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--inverse-muted);
+}
+
+/* Topbar actions: icon over a short visible label */
+.topbar .icon-btn {
+  width: auto;
+  min-width: 56px;
+  height: 52px;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: 0 var(--space-2);
+}
+.topbar .icon-btn:first-of-type { margin-left: 0; }
+.topbar .icon-btn.danger { margin-right: var(--space-2); }
+.icon-svg { flex-shrink: 0; }
+.icon-label { font-size: 12px; font-weight: 500; line-height: 1; letter-spacing: 0.01em; }
+
+/* How a top bar lays out its title next to the back button */
+.topbar > .topbar-title,
+.topbar > div > .topbar-title { margin: 0; }
+.topbar > .topbar-title { flex: 1; min-width: 0; }
+.topbar > .back-link + div { flex: 1; min-width: 0; }
+
+/* The back button in a top bar (a button or a link) */
+.back-link {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--inverse-line);
+  border-radius: var(--radius);
+  background: var(--inverse-fill);
+  color: var(--inverse-fg);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease-out;
+}
+.back-link:active { background: var(--inverse-fill-strong); }
+@media (hover: hover) { .back-link:hover { background: rgba(255, 255, 255, 0.14); } }
+
+/* Light theme: the top bars (and a launcher hero, where there is one) turn light too. The order-sent screen stays dark in both themes. */
+:root[data-theme="light"] :is(.hero, .topbar) {
+  --inverse-fg: #0F172A;
+  --inverse-muted: #566379;
+  --inverse-line: #D6DEEC;
+  --inverse-fill: rgba(15, 23, 42, 0.04);
+  --inverse-fill-strong: rgba(15, 23, 42, 0.1);
+  --accent-on-dark: #0052FF;
+  --gradient-on-dark: var(--gradient);
+  --danger-on-dark: #B91C1C;
+}
+:root[data-theme="light"] .topbar { --inverse-bg: #FFFFFF; }
+:root[data-theme="light"] :is(.hero, .topbar) .icon-btn:hover { background: rgba(15, 23, 42, 0.08); }
+@media (hover: hover) { :root[data-theme="light"] :is(.hero, .topbar) .back-link:hover { background: rgba(15, 23, 42, 0.08); } }

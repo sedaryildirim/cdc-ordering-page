@@ -1,0 +1,44 @@
+/* Shared ordering data: the not-ordered-in-6-weeks group, removed items and the access-code dialog.
+   Colours, spacing, buttons and the top bar come from shared/ (generated from design/; edit them there). */
+
+/* Shared ordering data: items nobody has ordered for 6 weeks, and items removed from a store's list */
+.dormant {
+  margin: var(--space-3) 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+.dormant > summary {
+  display: flex; align-items: center; gap: var(--space-2);
+  min-height: 48px; padding: 0 var(--space-4);
+  font-size: 14px; font-weight: 600; cursor: pointer; list-style: none;
+}
+.dormant > summary::-webkit-details-marker { display: none; }
+.dormant > summary::after { content: "\25BE"; margin-left: auto; color: var(--muted-foreground); transition: transform 0.2s ease-out; }
+.dormant[open] > summary::after { transform: rotate(180deg); }
+.dormant .meta { font-weight: 400; color: var(--muted-foreground); }
+.dormant-note { margin: 0; padding: 0 var(--space-4) var(--space-3); font-size: 13px; color: var(--muted-foreground); }
+.dormant > .item-row { border-top: 1px solid var(--border); }
+.dormant-remove { justify-self: start; min-height: 44px; padding: 0; font-size: 13px; color: var(--muted-foreground); text-decoration: underline; }
+.dormant-remove.armed { color: var(--danger, #f87171); font-weight: 600; }
+.removed-line { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-2) var(--space-4); border-top: 1px solid var(--border); }
+.removed-line .btn { min-height: 44px; padding: var(--space-2) var(--space-4); }
+
+/* A small centred dialog, used to ask for the staff access code */
+.sheet-dialog {
+  width: min(28rem, calc(100vw - 2 * var(--space-4))); padding: var(--space-5);
+  border: 1px solid var(--border-strong); border-radius: var(--radius-lg);
+  background: var(--card); color: var(--foreground); box-shadow: var(--shadow-xl);
+}
+.sheet-dialog::backdrop { background: rgba(5, 8, 20, 0.6); }
+.sheet-dialog form { display: grid; gap: var(--space-2); }
+.sheet-dialog h3 { margin: 0 0 var(--space-2); font-size: 20px; font-weight: 600; }
+.sheet-dialog p { margin: 0; font-size: 14px; color: var(--muted-foreground); }
+.sheet-dialog label { margin-top: var(--space-2); font-size: 13px; color: var(--muted-foreground); }
+.sheet-dialog input {
+  min-height: 44px; width: 100%; padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border-strong); border-radius: var(--radius);
+  background: var(--card); color: var(--foreground); font-size: 16px;
+}
+.sheet-dialog-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+.sheet-dialog-actions .btn { min-height: 48px; }

@@ -1,0 +1,65 @@
+/* Notices, empty search, restore, the simplified flow and the review bottom bar.
+   Colours, spacing, buttons and the top bar come from shared/ (generated from design/; edit them there). */
+
+/* ============ Resilience: notices, empty search, restore ============ */
+.storage-notice {
+  padding: var(--space-3) var(--gutter);
+  background: var(--warning-solid);
+  color: var(--on-warning);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.no-results { padding: var(--space-6) var(--gutter); text-align: center; color: var(--muted-foreground); }
+.no-results p { margin: 0 0 var(--space-3); }
+.global-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(96px + var(--safe-bottom));
+  z-index: var(--z-toast);
+  max-width: min(92vw, 420px);
+  padding: var(--space-3) var(--space-4);
+  transform: translateX(-50%);
+  border-radius: var(--radius);
+  background: var(--inverse-bg);
+  color: var(--inverse-fg);
+  border: 1px solid var(--inverse-line);
+  box-shadow: var(--shadow-lg);
+  font-size: 14px;
+  text-align: center;
+}
+.btn-link {
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-2);
+  min-height: 44px;
+  border: 0;
+  background: none;
+  color: var(--accent-on-dark);
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ============ Simplified flow: picker headers, one toast, one next step ============ */
+
+
+.global-toast.is-danger { background: var(--danger); border-color: transparent; color: var(--accent-foreground); font-weight: 600; }
+
+.send-again { width: 100%; max-width: 320px; margin-top: var(--space-3); text-align: center; }
+.send-again > summary {
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--inverse-muted);
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.send-again[open] > summary { color: var(--inverse-fg); }
+.send-again .btn { width: 100%; max-width: none; margin-top: var(--space-2); }
+
+.how-to .btn-link { min-width: 44px; display: block; margin: var(--space-1) 0 0; padding: 0; min-height: 44px; text-align: left; color: var(--accent-ink); }
+
+/* Review: Edit lives in the top bar, so the bottom bar is two rows */
+#reviewScreen .bottombar.stacked { gap: var(--space-2); }

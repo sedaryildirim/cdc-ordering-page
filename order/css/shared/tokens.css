@@ -1,0 +1,126 @@
+/* GENERATED from design/tokens.css by scripts/sync-design.mjs. Do not edit this copy: change design/tokens.css and run npm run design:sync. */
+/* Minimalist Modern: clarity through structure, character through bold detail.
+   Calistoga (display) + Inter (UI) + JetBrains Mono (labels, numbers).
+   One electric-blue accent, concentrated. Inverted slate sections for rhythm.
+   Light is the default; [data-theme="dark"] remaps the same tokens. */
+
+/* ============ Tokens ============ */
+:root {
+  --background: #FAFAFA;
+  --foreground: #0F172A;
+  --muted: #F1F5F9;
+  --muted-foreground: #566379;
+  --card: #FFFFFF;
+  --border: #E2E8F0;
+  --border-strong: #8393A9;       /* inputs: needs 3:1 against the card */
+
+  --accent: #0052FF;
+  --accent-foreground: #FFFFFF;
+  --accent-ink: #0052FF;          /* accent used as text */
+  --accent-tint: rgba(0, 82, 255, 0.06);
+  --accent-line: rgba(0, 82, 255, 0.3);
+  --ring: #0052FF;
+
+  --gradient: linear-gradient(135deg, #0052FF, #4D7CFF);
+  /* Buttons stop short of the light end so white text keeps 4.5:1 */
+  --gradient-btn: linear-gradient(135deg, #0052FF, #3366F0);
+  --gradient-on-dark: linear-gradient(135deg, #4D7CFF, #9DB8FF);
+
+  --inverse-bg: #0F172A;
+  --inverse-fg: #F8FAFC;
+  --inverse-muted: #A5B1C5;
+  --inverse-line: rgba(255, 255, 255, 0.14);
+  --inverse-fill: rgba(255, 255, 255, 0.06);
+  --inverse-fill-strong: rgba(255, 255, 255, 0.16);
+  --accent-on-dark: #9DB8FF;
+  --danger-on-dark: #F87171;
+
+  --success: #15803D;
+  --success-bg: #F0FDF4;
+  --danger: #DC2626;
+  --warning-ink: #0B3BA8;
+  --warning-bg: #EEF3FF;
+  --warning-border: #0052FF;
+  --warning-solid: #0B3BA8;
+  --on-warning: #FFFFFF;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+  --shadow-accent: 0 4px 14px rgba(0, 82, 255, 0.25);
+  --shadow-accent-lg: 0 8px 24px rgba(0, 82, 255, 0.35);
+
+  --bar-bg: rgba(255, 255, 255, 0.88);
+  --scroll-thumb: #4D7CFF;
+  --scroll-track: #F1F5F9;
+  color-scheme: light;
+
+  --font-display: "Calistoga", Georgia, serif;
+  --font-ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* spacing scale: every padding, margin and gap comes from this set */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  /* stacking order of page layers */
+  --z-sticky: 10;
+  --z-bar: 20;
+  --z-toast: 60;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  /* Keeps bars full-bleed but content in a readable column on wide screens */
+  --gutter: max(16px, calc((100% - 720px) / 2));
+
+  --gate-scrim: rgba(250, 250, 250, 0.4);
+  --gate-panel: rgba(255, 255, 255, 0.66);
+  --gate-glow-a: rgba(0, 82, 255, 0.22);
+  --gate-glow-b: rgba(0, 82, 255, 0.14);
+}
+
+:root[data-theme="dark"] {
+  --background: #0B1120;
+  --foreground: #F1F5F9;
+  --muted: #1A2438;
+  --muted-foreground: #9AA8BF;
+  --card: #121A2C;
+  --border: #243049;
+  --border-strong: #5F7190;
+
+  --accent-ink: #7FA2FF;
+  --accent-tint: rgba(77, 124, 255, 0.12);
+  --accent-line: rgba(127, 162, 255, 0.4);
+  --ring: #7FA2FF;
+
+  --inverse-bg: #050914;
+  --inverse-fg: #F8FAFC;
+
+  --success: #4ADE80;
+  --success-bg: #0F2418;
+  --warning-ink: #B4C8FF;
+  --warning-bg: #14203F;
+  --warning-border: #4D7CFF;
+  --warning-solid: #2347B8;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.45);
+
+  --bar-bg: rgba(18, 26, 44, 0.9);
+  --scroll-thumb: #3B5FC4;
+  --scroll-track: #0B1120;
+  color-scheme: dark;
+  --gate-scrim: rgba(5, 9, 20, 0.45);
+  --gate-panel: rgba(18, 26, 44, 0.62);
+  --gate-glow-a: rgba(0, 82, 255, 0.5);
+  --gate-glow-b: rgba(0, 82, 255, 0.32);
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mojo's + Kaif</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem("mojos_theme");
+    if (t !== "light" && t !== "dark") {
+      t = "dark"; // dark is the default; a saved choice from the toggle still wins
+    }
+    document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/shared/tokens.css">
+<link rel="stylesheet" href="css/shared/base.css">
+<link rel="stylesheet" href="css/shared/gate.css">
+<link rel="stylesheet" href="css/launcher.css">
+</head>
+<body>
+<main>
+
+<!-- The menu of tools. Each card becomes a link once its address is set in config/config.js; until then it is greyed out. -->
+<section id="launcherScreen" class="screen active">
+  <div class="branch-screen">
+    <div class="hero">
+      <button class="icon-btn theme-toggle" id="launcherThemeToggle" type="button" title="Switch theme" aria-label="Switch theme"></button>
+      <h1 class="logo">Mojo's + Kaif <span class="gradient-text">Ordering System</span></h1>
+      <div class="hero-field" aria-hidden="true"></div>
+    </div>
+    <div class="branch-grid" id="launcherGrid">
+      <button class="launch-card is-wip" type="button" id="openKaifOrdering" disabled>
+        <span class="launch-kicker">Suppliers</span>
+        <span class="launch-title">Kaif Ordering</span>
+        <span class="launch-badge">Not available yet</span>
+      </button>
+      <button class="launch-card is-wip" type="button" id="openMojosOrdering" disabled>
+        <span class="launch-kicker">Suppliers</span>
+        <span class="launch-title">Mojo's Ordering</span>
+        <span class="launch-badge">Not available yet</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Shown when the menu opens, until dismissed (remembered for 30 days): frosted glass over the menu. -->
+<div data-gate-overlay id="betaNotice" hidden>
+  <div role="dialog" aria-modal="true" aria-labelledby="betaTitle" aria-describedby="betaText" data-gate-panel>
+    <p class="beta-kicker">Beta</p>
+    <h2 id="betaTitle">Under testing</h2>
+    <p id="betaText">This is a beta tool that is still being tested. It is for personal use only, and things may change, break or disappear without notice.</p>
+    <button type="button" class="btn" id="betaOk">I understand</button>
+  </div>
+</div>
+
+<script src="config/config.js"></script>
+<script src="js/launcher.js"></script>
+<script src="js/hero-fx.js"></script>
+</body>
+</html>
