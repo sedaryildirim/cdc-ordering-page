@@ -2721,7 +2721,7 @@ const DATA = {
             "id": "198368",
             "name": "ARO Chicken Egg no.2 with Cover 30 pcs",
             "unit": "EACH",
-            "price": 153,
+            "price": 155,
             "par": null
           },
           {
@@ -2859,7 +2859,7 @@ const DATA = {
             "id": "926863",
             "name": "Frozen Australian Picanha 100 Days Beef (1-1.5kg/pc)",
             "unit": "Kilogram",
-            "price": 649,
+            "price": 550,
             "par": null
           },
           {
@@ -2887,14 +2887,14 @@ const DATA = {
             "id": "111259",
             "name": "Frozen Australian Lamb Shoulder Boneless 1 pc (Approx. 1 kg/pc)",
             "unit": "Kilogram",
-            "price": 555,
+            "price": 450,
             "par": null
           },
           {
             "id": "233616",
             "name": "Pork Hip Mince 1 kg",
             "unit": "Kilogram",
-            "price": 135,
+            "price": 122,
             "par": null
           },
           {
@@ -2941,7 +2941,7 @@ const DATA = {
             "id": "135318",
             "name": "Cauliflower White 1 kg",
             "unit": "Kilogram",
-            "price": 85,
+            "price": 69,
             "par": null
           },
           {
@@ -2955,14 +2955,14 @@ const DATA = {
             "id": "826835",
             "name": "Chinese Kale 500 g",
             "unit": "EACH",
-            "price": 45,
+            "price": 59,
             "par": null
           },
           {
             "id": "862439",
             "name": "Dill Coriander 150 g",
             "unit": "EACH",
-            "price": 22,
+            "price": 39,
             "par": null
           },
           {
@@ -3018,7 +3018,7 @@ const DATA = {
             "id": "135600",
             "name": "Import Iceberg Lettuce",
             "unit": "Kilogram",
-            "price": 89,
+            "price": 79,
             "par": null
           },
           {
@@ -3074,7 +3074,7 @@ const DATA = {
             "id": "800617",
             "name": "Indian Shallot 1 kg",
             "unit": "EACH",
-            "price": 45,
+            "price": 39,
             "par": null
           },
           {
@@ -3096,6 +3096,13 @@ const DATA = {
             "name": "Lemon Pack 4 pcs",
             "unit": "EACH",
             "price": 79,
+            "par": null
+          },
+          {
+            "id": "847804",
+            "name": "Lime Jumbo 10 pcs",
+            "unit": "EACH",
+            "price": 95,
             "par": null
           },
           {
@@ -3144,7 +3151,7 @@ const DATA = {
             "id": "310591",
             "name": "Plum Tomato 3 kg Pack",
             "unit": "EACH",
-            "price": 125,
+            "price": 135,
             "par": null
           },
           {
@@ -3282,7 +3289,7 @@ const DATA = {
             "id": "148557",
             "name": "ARO Black Pepper 500 g",
             "unit": "EACH",
-            "price": 170,
+            "price": 175,
             "par": null
           },
           {
@@ -3612,7 +3619,7 @@ const DATA = {
             "id": "142411",
             "name": "BEST FOODS Elbow Macaroni 2.5 kg",
             "unit": "EACH",
-            "price": 242,
+            "price": 239,
             "par": null
           },
           {
@@ -3682,7 +3689,7 @@ const DATA = {
             "id": "147447",
             "name": "SUPER-FINE Corn Flour 1 kg",
             "unit": "EACH",
-            "price": 34,
+            "price": 42,
             "par": null
           },
           {
@@ -3715,14 +3722,14 @@ const DATA = {
             "id": "220839",
             "name": "BONUS Palm Oil 1 l x 3",
             "unit": "EACH",
-            "price": 153,
+            "price": 155,
             "par": null
           },
           {
             "id": "188165",
             "name": "BONUS Palm Oil 18 l",
             "unit": "EACH",
-            "price": 920,
+            "price": 900,
             "par": null
           },
           {
@@ -3797,7 +3804,7 @@ const DATA = {
             "id": "142922",
             "name": "SAVEPAK French Fries 10mm 2 kg x 6",
             "unit": "EACH",
-            "price": 590,
+            "price": 550,
             "par": null
           }
         ]
@@ -3933,7 +3940,7 @@ const DATA = {
             "id": "901191",
             "name": "ARO Kitchen Towel 6+2 rolls",
             "unit": "EACH",
-            "price": 137,
+            "price": 129,
             "par": null
           },
           {
@@ -3954,14 +3961,14 @@ const DATA = {
             "id": "743398",
             "name": "ARO Plastic Handle Bag PE 12x20\" 1 kg",
             "unit": "EACH",
-            "price": 149,
+            "price": 109,
             "par": null
           },
           {
             "id": "290906",
             "name": "ARO Plastic Handle Bag PE 8x16\" 1 kg",
             "unit": "EACH",
-            "price": 99,
+            "price": 109,
             "par": null
           },
           {
